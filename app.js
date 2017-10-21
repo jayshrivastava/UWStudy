@@ -2,7 +2,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     app = express();
 
-var port = 3000;
+mongoose.connect(process.env.DB_URL, {useMongoClient: true});
 
 app.set("view-engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -11,6 +11,6 @@ app.get("/", function(req, res){
   res.render("home.ejs");
 });
 
-app.listen(port, function(){
-  console.log("app started on port: " + port);
+app.listen(process.env.PORT, function(){
+  console.log("app started on port: " + process.env.PORT);
 });
