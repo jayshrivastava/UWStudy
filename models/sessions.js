@@ -5,8 +5,10 @@ var sessionSchema = mongoose.Schema({
   maxMembers: Number,
   currentMembers: Number,
   location: String,
-  start: Number, //24 hour clock
-  end: Number // 24 hour clock
+  createdAt: { type: Date, default: Date.now },
+  expireAt: { type: Date, default: undefined }
 });
+
+sessionSchema.index({ "expireAt": 1 }, { expireAfterSeconds: 0 });
 
 module.exports = mongoose.model("Session", sessionSchema);

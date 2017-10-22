@@ -1,5 +1,6 @@
 var express = require('express'),
     mongoose = require('mongoose'),
+    bodyParser = require('body-parser'),
     app = express();
 
 var Session = require("./models/sessions.js");
@@ -11,6 +12,8 @@ mongoose.connect(process.env.DB_URL, {useMongoClient: true});
 app.set("view engine", "ejs");
 // stylesheet and scripts
 app.use(express.static(__dirname + "/public"));
+//bodyParser
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // seedDB();
 
@@ -22,13 +25,27 @@ app.get("/", function(req, res){
   })
 });
 
+app.get("/create", function (req, res){
+  res.render ("create");
+});
+
+app.post("/create", function (req, res){
+  var session = {course: req.body.course, expireAt: Date.now() + (req.body.duration*60*60*1000)}
+
+  Session.create(session, function(err, session){
+    if(!err)
+      res.redirect("/");
+  });
+});
+
 app.listen(process.env.PORT, function(){
   console.log("app started on port: " + process.env.PORT);
 });
 
 function seedDB(){
   Session.create({
-    course: "ECE 150"
+    course: "test",
+    expireAt: Date.now() + 60000
   }, function(session, err){
     if(!err)
       console.log(session);
