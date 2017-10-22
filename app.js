@@ -22,6 +22,10 @@ app.get("/", function(req, res){
   })
 });
 
+app.get("/create", function (req, res){
+  res.render ("create");
+});
+
 app.listen(process.env.PORT, function(){
   console.log("app started on port: " + process.env.PORT);
 });
