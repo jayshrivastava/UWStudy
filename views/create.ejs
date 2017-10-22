@@ -1,5 +1,15 @@
 <%include ./partials/header %>
 
-<p> You're creating something </p>
+<form action="/create" method="POST">
+
+  Course:<br>
+    <input type="text" name="course" value="ECE 115">
+    <br>
+    Duration (h):<br>
+    <input type="number" name="duration" value="2">
+    <br><br>
+    <input type="submit" value="Submit">
+
+</form>
 
 <%include ./partials/footer %>
