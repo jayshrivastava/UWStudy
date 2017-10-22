@@ -18,11 +18,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // seedDB();
 
 app.get("/", function(req, res){
+    res.render("home");
+});
+
+app.get("/groups", function(req, res){
   Session.find({}, function(err, foundSessions){
     if(!err){
-      res.render("home", {foundSessions: foundSessions});
+      res.render("show", {foundSessions: foundSessions});
     }
-  })
+  });
 });
 
 app.get("/create", function (req, res){
@@ -34,18 +38,24 @@ app.post("/create", function (req, res){
 
   Session.create(session, function(err, session){
     if(!err)
-      res.redirect("/");
+      res.redirect("/groups");
   });
 });
 
-app.listen(process.env.PORT, function(){
+// Catch-all route
+app.get("*", function(req, res){
+  res.redirect("/");
+});
+
+app.listen(process.env.PORT, process.env.IP, function(){
   console.log("app started on port: " + process.env.PORT);
+  console.log("url: uwstudy-damianreiter.c9users.io/");
 });
 
 function seedDB(){
   Session.create({
     course: "test",
-    expireAt: Date.now() + 60000
+    expireAt: Date.now() + (60*1000)
   }, function(session, err){
     if(!err)
       console.log(session);

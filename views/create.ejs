@@ -1,15 +1,50 @@
-<%include ./partials/header %>
+<% include ./partials/header %>
 
-<form action="/create" method="POST">
+<div class="container">
+  
+  
+   <h2>New Study Session</h2>
+    <form action="/create" method="POST">
+    <div class="form-group">
+      <label for="Course">Course:</label>
+      <input type="text" class="form-control" placeholder="ECE 105" name="course">
+    </div>
+    <div class="form-group">
+        <label for="Duration">Duration (hours):</label>
+      <input type="number" class="form-control" placeholder="2" name="duration">
+    </div>
+    <div class="form-group">
+        <label for="MaxSize">Maximum Size:</label>
+      <input type="number" class="form-control" placeholder="4" name="size">
+    </div>
+    <div class="form-group">
+        <label for="Building">Building:</label>
+      <input type="text" class="form-control" placeholder="RCH" name="building">
+    </div>
+    <div class="form-group">
+        <label for="Room">Room Number:</label>
+      <input type="number" class="form-control" placeholder="301" name="room">
+    </div>
+    <div class="form-group">
+        <label for="Floor">Floor:</label>
+      <input type="number" class="form-control" placeholder="3" name="floor">
+    </div>
+    <div class="form-group">
+        <label for="Contact">Contact info:</label>
+      <input type="text" class="form-control" placeholder="John Doe - facebook.com/johndoe100000/" name="contact">
+    </div>
+    <div class="form-group">
+        <label for="Details">Additional Details:</label>
+      <input type="text" class="form-control" placeholder="We're in the 2nd last row :)" name="details">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" name="Consent"> I agree </label>
+    </div>
+    <button type="submit" class="btn btn-default">Create</button>
+  </form>
+</div>
 
-  Course:<br>
-    <input type="text" name="course" value="ECE 115">
-    <br>
-    Duration (m):<br>
-    <input type="number" name="duration" value="2">
-    <br><br>
-    <input type="submit" value="Submit">
 
-</form>
+</div>
 
-<%include ./partials/footer %>
+<% include ./partials/footer %>

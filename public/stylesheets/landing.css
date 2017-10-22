@@ -1,0 +1,66 @@
+#auth-btns li a {
+  border: 2px solid #43A047;
+  padding: 6px 10px 4px 10px !important;
+  margin: 8px 10px;
+  border-radius: 25px;
+  width: 110px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+}
+
+#log {
+  color: #43A047;
+}
+
+#log:hover {
+  color: white;
+  background: #43A047;
+}
+
+#sign {
+  color: white;
+  background: #43A047;
+}
+
+#sign:hover {
+  background: #66BB6A;
+  border-color: #66BB6A;
+}
+
+#nav {
+  margin: 0;
+  background-color: rgba(255,255,255,0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0px;
+}
+
+.info-panel {
+    height: 500px;
+}
+
+.info-panel:nth-of-type(2) {
+    background-color: #eeeeee;
+}
+
+.backdrop {
+  height: 100vh;
+  background: url(/img/study-1.jpg);
+  background-size: cover;
+}
+
+i {
+  -webkit-animation-name: bob;
+  animation-name: bob;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+}
+
+@keyframes bob {
+  0% { top: 90vh ;}
+  50% { top: 89vh ;}
+  100% { top: 90vh ;}
+}
