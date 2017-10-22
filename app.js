@@ -30,7 +30,7 @@ app.get("/create", function (req, res){
 });
 
 app.post("/create", function (req, res){
-  var session = {course: req.body.course, expireAt: Date.now() + (req.body.duration*60*60*1000)}
+  var session = {course: req.body.course, expireAt: Date.now() + (req.body.duration*60*1000)}
 
   Session.create(session, function(err, session){
     if(!err)
