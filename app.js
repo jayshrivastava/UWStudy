@@ -3,6 +3,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     app = express();
 
+
+//test
 var Session = require("./models/sessions.js");
 
 mongoose.connect(process.env.DB_URL, {useMongoClient: true});
