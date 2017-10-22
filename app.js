@@ -12,7 +12,7 @@ app.set("view engine", "ejs");
 // stylesheet and scripts
 app.use(express.static(__dirname + "/public"));
 
-// seedDB();
+seedDB();
 
 app.get("/", function(req, res){
   Session.find({}, function(err, foundSessions){
@@ -28,7 +28,8 @@ app.listen(process.env.PORT, function(){
 
 function seedDB(){
   Session.create({
-    course: "ECE 150"
+    course: "test",
+    expireAt: Date.now() + 60000
   }, function(session, err){
     if(!err)
       console.log(session);
