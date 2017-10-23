@@ -1,0 +1,62 @@
+body {
+    height: 100vh;
+    background: linear-gradient(#74AD1B, #43A047);
+}
+
+h3 {
+    text-align: center;
+    color: #43A047;
+}
+
+input:focus {
+    border: 1px solid #43A047 !important;
+    box-shadow: 0 0 3px #43A047 !important;
+    -moz-box-shadow: 0 0 3px #43A047 !important;
+    -webkit-box-shadow: 0 0 3px #43A047 !important;
+}
+
+.container input, .container button {
+    height: 40px;
+}
+
+.container {
+    padding: 0;
+    margin: auto auto;
+    background-color: white;
+    max-width: 420px;
+    border-radius: 7px;
+    box-shadow: 0px 2px 10px rgba(50,50,50,0.6);
+}
+
+.form-cont {
+    margin: 30px 60px;
+}
+
+.signup {
+    display: block;
+    padding: 20px;
+    background: #f5f5f5;
+    border-top: 1px solid #d1d1d1;
+    text-decoration: none !important;
+    text-align: center;
+    color: rgba(100, 100, 100, 0.8);
+    border-radius: 7px;
+}
+
+.logo {
+    text-align: center;
+    height: 300px;
+}
+
+.logo img {
+    transform: scale(0.25, 0.25)
+}
+
+.logo a {
+    display: inline-block;
+    height: 0px;
+}
+
+.btn-success {
+    margin: 30px 0;
+}

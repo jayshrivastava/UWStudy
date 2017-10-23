@@ -20,23 +20,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // seedDB();
 
 app.get("/", function(req, res){
-    res.render("home");
+    res.render("landing");
 });
 
 app.get("/groups", function(req, res){
   Session.find({}, function(err, foundSessions){
     if(!err){
-      res.render("show", {foundSessions: foundSessions});
+      res.render("sessions/show", {foundSessions: foundSessions});
     }
   });
 });
 
-app.get("/create", function (req, res){
-  res.render ("create");
+app.get("/create", function(req, res){
+  res.render("sessions/create");
 });
 
+app.get("/login", function(req, res){
+  res.render("auth/login");
+})
+
 app.post("/create", function (req, res){
-  var session = {course: req.body.course, expireAt: Date.now() + (req.body.duration*60*1000)}
+  var session = {course: req.body.course, building: req.body.building, maxMembers: req.body.size,  floor: req.body.floor, room: req.body.room,  expireAt: Date.now() + (req.body.duration*60*1000) }
 
   Session.create(session, function(err, session){
     if(!err){
