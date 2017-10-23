@@ -19,6 +19,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // seedDB();
 
+// routes 
+
 app.get("/", function(req, res){
     res.render("landing");
 });
