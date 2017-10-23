@@ -3,7 +3,6 @@ var mongoose = require("mongoose");
 var sessionSchema = mongoose.Schema({
   course: String,
   currentMembers: Number,
-  leader: String,
   location: String,
   maxMembers: Number, 
   building: String,
@@ -11,6 +10,15 @@ var sessionSchema = mongoose.Schema({
   floor: Number,
   contact: String, 
   details: String,
+  
+  leader: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
+    username: String
+  },
+  
   createdAt: { type: Date, default: Date.now },
   expireAt: { type: Date, default: undefined }
 });
