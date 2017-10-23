@@ -49,6 +49,10 @@ input:focus {
     width: 100vw;
 }
 
+.logo img {
+    transform: scale(0.2, 0.2)
+}
+
 .btn-success {
     margin: 30px 0;
 }
