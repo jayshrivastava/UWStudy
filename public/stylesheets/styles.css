@@ -4,3 +4,37 @@ body {
   background: white;
   font-family: 'Lato', sans-serif;
 }
+
+/*----------------------
+Product Card Styles 
+----------------------*/
+.panel.panel--styled {
+    background: #F4F2F3;
+}
+.panelTop {
+    padding: 15px;
+}
+
+.panelBottom {
+    border-top: 1px solid #e7e7e7;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+.btn-add-to-cart {
+    background: #FD5A5B;
+    color: #fff;
+}
+.btn.btn-add-to-cart.focus, .btn.btn-add-to-cart:focus, .btn.btn-add-to-cart:hover  {
+	color: #fff;   
+    background: #FD7172;
+	outline: none;
+}
+.btn-add-to-cart:active {
+	background: #F9494B;
+	outline: none;
+}
+
+span.var {
+    font-size: 20px;
+    color: #FA5B58;
+}

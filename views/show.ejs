@@ -8,9 +8,46 @@
   <div class="row">
 
 <% foundSessions.forEach(function(session){ %>
-    <div class="col-lg-4">
-       <p><%= session.course %></p>
-    </div>
+
+		
+			<div class="col-lg-4">				
+				<div class="panel panel-default  panel--styled">
+					<div class="panel-body">
+						<div class="col-lg-12 panelTop">	
+							<!--<div class="col-md-2">	-->
+							<!--	<img class="img-responsive" src="http://placehold.it/350x350" alt=""/>-->
+							<!--</div>-->
+							<div class="col-lg-12">	
+							<h2><%=session.course%></h2>
+								<p>Lorem , prima oratio ius ea. Et duo alii verterem principes, te quo putent melius fabulas, ei scripta eligendi appareat duo.</p>
+									<p><b>Contact:</b> Facebook</p></p>
+							</div>
+						</div>
+						
+						<div class="col-lg-12 panelBottom">
+							<!--<div class="col-lg-3 text-center bean">-->
+							<!--	<button class="btn btn-lg btn-add-to-cart"> Join</button>						-->
+							<!--</div>-->
+							
+							<div class="col-lg-3 text-left">
+								<h5>Expires <span class="var">20m.</span></h5>
+							</div>
+							<div class="col-lg-3 text-left">
+								<h5>Place <span class="var">RCH</span></h5>
+							</div>
+							<div class="col-lg-3 text-left">
+								<h5>Room <span class="var">301</span></h5>
+							</div>
+							<div class="col-lg-3 text-left">
+								<h5>People <span class="var">3/5</span></h5>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		
+
 <% }) %>
 
 
