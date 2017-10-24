@@ -1,10 +1,18 @@
-var express = require('express'),
-    mongoose = require('mongoose'),
-    bodyParser = require('body-parser'),
-    app = express();
-
-
-//test git commit from jay
+var express       = require('express'),
+    mongoose      = require('mongoose'),
+    bodyParser    = require('body-parser'),
+    LocalStrategy = require("passport-local"),
+    passport      = require("passport"),
+    methodOverride = require("method-override"),
+    app           = express();
+    
+    // -- -- -- -- TODO -- -- -- -- 
+    /*
+     *  1. get auth working
+     *  2. fix big anchor tag on login page
+     *
+     */
+     
 var Session = require("./models/sessions.js");
 
 mongoose.connect(process.env.DB_URL, {useMongoClient: true});
@@ -20,7 +28,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // seedDB();
 
 // routes
-
 app.get("/", function(req, res){
     res.render("landing");
 });
@@ -39,10 +46,6 @@ app.get("/create", function(req, res){
 
 app.get("/login", function(req, res){
   res.render("auth/login");
-});
-
-app.get("/login2", function(req, res){
-  res.render("auth/login2");
 });
 
 app.post("/create", function (req, res){
