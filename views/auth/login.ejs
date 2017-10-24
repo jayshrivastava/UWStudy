@@ -2,30 +2,39 @@
     <link rel="stylesheet" href="stylesheets/login.css">
   </head>
   <body>
-
-<div class="logo">
-    <a href="/">
-        <img src="/img/logosmall.png">
-    </a>
-</div>
-
-<div class="container login-form">
-    <div class="form-cont">
-        <h3>Log in to your account</h3>
-        <hr>
-        <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
-          <button type="submit" class="btn btn-block btn-success">Submit</button>
-        </form>
+      
+      <!-- FIX HUGE LINK ON LOGO -->
+      
+    <div class="container">
+        <div class="logo">
+            <a href="/">
+                <img src="/img/logosmall.png">
+            </a>
+        </div>
     </div>
-    <a href="/signup" class="signup">Don't have an account? Sign up</a>
-</div>
+
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 frm">
+            <div class="form-cont">
+                <h3>Log in to your account</h3>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <button type="submit" class="btn btn-block btn-success">Submit</button>
+                </form>
+            </div>
+            <a href="/signup" class="signup">Don't have an account? Sign up</a>
+        </div>
+    </div>
+    
+    <script src="scripts/login.js"></script>
+
 
 <% include ../partials/footer %>

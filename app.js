@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // seedDB();
 
-// routes 
+// routes
 
 app.get("/", function(req, res){
     res.render("landing");
@@ -39,7 +39,11 @@ app.get("/create", function(req, res){
 
 app.get("/login", function(req, res){
   res.render("auth/login");
-})
+});
+
+app.get("/login2", function(req, res){
+  res.render("auth/login2");
+});
 
 app.post("/create", function (req, res){
   var session = {course: req.body.course, building: req.body.building, maxMembers: req.body.size,  floor: req.body.floor, room: req.body.room,  expireAt: Date.now() + (req.body.duration*60*1000) }
