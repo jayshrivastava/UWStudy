@@ -20,6 +20,13 @@ router.get("/logout", function(req, res){
     res.redirect("/");
 });
 
+router.post("/login", passport.authenticate('local', {
+    successRedirect: "/",
+    failureRedirect: "/login"
+}), function(req, res){
+    
+});
+
 router.post("/signup", function(req, res){
     var newUser = new User({
         username: req.body.username,
