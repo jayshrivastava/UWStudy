@@ -30,8 +30,12 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right" id="auth-btns">
+        <% if(!currentUser){ %>
         <li><a href="/login" id="log">Log In</a></li>
-        <li><a href="#" id="sign">Sign Up</a></li>
+        <li><a href="/signup" id="sign">Sign Up</a></li>
+        <% } else { %>
+        <li><a href="/logout" id="log">Log Out</a></li>
+        <% } %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

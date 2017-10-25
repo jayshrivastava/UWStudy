@@ -1,0 +1,43 @@
+<% include ../partials/header %>
+    <link rel="stylesheet" href="stylesheets/login.css">
+  </head>
+  <body>
+      
+      <!-- FIX HUGE LINK ON LOGO -->
+      
+    <div class="container">
+        <div class="logo">
+            <a href="/">
+                <img src="/img/logosmall.png">
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 frm">
+            <div class="form-cont">
+                <h3>Register a new account</h3>
+                <hr>
+                <form method="POST" action="/signup">
+                  <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                  </div>
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Email" name="username">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                  </div>
+                  <button type="submit" class="btn btn-block btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scripts/login.js"></script>
+
+
+<% include ../partials/footer %>

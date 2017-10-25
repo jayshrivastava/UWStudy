@@ -13,50 +13,42 @@ var express       = require('express'),
      *
      */
      
-var Session = require("./models/sessions.js");
+var Session = require("./models/sessions.js"),
+    User    = require("./models/user.js");
+    
+var authRoutes = require("./routes/auth.js"),
+    groupRoutes = require("./routes/groups.js");
 
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DB_URL, {useMongoClient: true});
 
-// res.render automatically looks in views directory,
-// view engine means it expects all files to be of .ejs if no extension is specified
-app.set("view engine", "ejs");
-// stylesheet and scripts
-app.use(express.static(__dirname + "/public"));
-//bodyParser
-app.use(bodyParser.urlencoded({ extended: false }));
+// passport config
+app.use(require("express-session")({
+    secret: "anything",
+    resave: false,
+    saveUninitialized: false
+}));
 
-// seedDB();
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// passport initialization
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+});
+
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // routes
-app.get("/", function(req, res){
-    res.render("landing");
-});
-
-app.get("/groups", function(req, res){
-  Session.find({}, function(err, foundSessions){
-    if(!err){
-      res.render("sessions/show", {foundSessions: foundSessions});
-    }
-  });
-});
-
-app.get("/create", function(req, res){
-  res.render("sessions/create");
-});
-
-app.get("/login", function(req, res){
-  res.render("auth/login");
-});
-
-app.post("/create", function (req, res){
-  var session = {course: req.body.course, building: req.body.building, maxMembers: req.body.size,  floor: req.body.floor, room: req.body.room,  expireAt: Date.now() + (req.body.duration*60*1000) }
-
-  Session.create(session, function(err, session){
-    if(!err){
-      res.redirect("/groups");
-    }
-  });
-});
+app.use(authRoutes);
+app.use("/groups", groupRoutes);
 
 // Catch-all route
 app.get("*", function(req, res){
