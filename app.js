@@ -10,6 +10,7 @@ var express       = require('express'),
     /*
      *  1. get auth working
      *  2. fix big anchor tag on login page
+     *  3. Set leader & leader actions
      *
      */
      

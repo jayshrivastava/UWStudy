@@ -2,6 +2,9 @@
 
   </head>
   <body>
+  	<% if(currentUser) { %>
+  		<h1><%= currentUser.username %></h1>
+  	<% } %>
 
 <div class="container">
   <div class="row">
@@ -24,7 +27,7 @@
 					
 						<div class="col-lg-12 panelBottom">
 							<!--<div class="col-lg-3 text-center bean">-->
-							<!--	<button class="btn btn-lg btn-add-to-cart"> Join</button>						-->
+							<!--	<button class="btn btn-lg btn-add-to-cart"> Join</button>	-->
 							<!--</div>-->
 							
 							<div class="col-lg-3 col-md-3 text-left">
@@ -39,17 +42,13 @@
 							<div class="col-lg-3 col-md-3 text-left">
 								<h5 id="expiresplaceroomfloor">Floor </h5> <span class="var"><%= session.floor %></span>
 							</div>
-							
 						</div>
-						
-						
-								
 						<div class="col-lg-12 panelBottom">
 						
 						   <div class="col-lg-12 col-md-12" id="override1">
 		                    <div class="progress" id = "progressnomargin">
-		                      <div data-percentage="0%" style="width: <%= 2/(session.maxMembers) * 100%>%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-		                      	<p>2 / <%= (session.maxMembers)%> Spots </p>
+		                      <div data-percentage="0%" style="width: <%=session.currentUsers.length/session.maxMembers * 100%>%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+		                      	<p> <%= session.currentUsers.length%> / <%= (session.maxMembers)%> Spots </p>
 		                      </div>
 		                    </div>
 		                  </div>
@@ -57,12 +56,15 @@
 						
 						   <div class="col-lg-12 col-md-12" id="override">
 		                    <div class="progress" id= "progressnomargin">
-		                      <div data-percentage="0%" style="width: <%= (40/120)*100%>%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+		                      <div data-percentage="0%" style="width: <%= (40/120)* 100 %>%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">
 		                      	<p> 40mins </p>
 		                      </div>
 		                    </div>
 		                  </div>
-						
+		                  
+		                  <form action="/groups/<%= session._id %>/join" method="POST">
+		                  	<button class="btn btn-large btn-block">Join</button>
+		                  </form>
 						</div>
 						
 						

@@ -2,16 +2,25 @@ var mongoose = require("mongoose");
 
 var sessionSchema = mongoose.Schema({
   course: String,
-  currentMembers: Number,
   location: String,
-  maxMembers: Number, 
+  maxMembers: Number,
   building: String,
   room: Number,
   floor: Number,
   contact: String, 
   details: String,
   
-  leader: {
+  currentUsers: [
+    {
+      id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+        
+      },
+      username: String
+    }],
+  
+  author: {
     id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User"
