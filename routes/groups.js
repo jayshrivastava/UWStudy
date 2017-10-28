@@ -16,25 +16,25 @@ router.get("/create", function(req, res){
   res.render("sessions/create");
 });
 
+// joining group logic
 router.post("/:id/join", function(req, res){
   var user = req.user;
   if(!user){
     res.redirect("/login");
   }
+  
+  console.log(user.currentGroup);
 
-  if(!user.inGroup){
-    Session.findById(req.params.id, function(err, session){
+  if(!user.inGroup){ //if user is not currently in a group
+    Session.findById(req.params.id, function(err, session){ //find the group they clicked on
       if(!err){
-        session.currentUsers.push(user);
-        session.save();
+        session.currentUsers.push(user); //add the current user to the group's users
+        session.save(); // save the group information
         Session.populate(session, {path: "currentUsers"});
         user.currentGroup = session._id; // save the session object id under currentGroup for the current user
         User.populate(user, {path: "currentGroup"}); // 'populate' the sessions' object id (aka find the corresponding session and replace the object id with actual data)
-        user.inGroup = true;
+        user.inGroup = true; // set the user to be currently in a group
         user.save();
-        setTimeout(function(){
-          console.log("ASDF" + user);
-        }, 1000);
       }
     });
   } else {
@@ -44,6 +44,21 @@ router.post("/:id/join", function(req, res){
   // TODO redirect to group SHOW page with all group info nicely displayed
     res.redirect("/groups");
 });
+
+// leave group route
+router.get("/leave", function(req, res){
+  var user = req.user;
+
+  console.log(req.user.currentGroup.toString());
+  
+  // TODO make user get removed from currentUsers array of the session
+  
+  user.inGroup = false;       //
+  user.currentGroup = null;   // this part works
+  user.save();                //
+  
+  res.redirect("/groups");
+})
 
 router.post("/create", function (req, res){
   if(req.user)
