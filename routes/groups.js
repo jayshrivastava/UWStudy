@@ -21,20 +21,26 @@ router.post("/:id/join", function(req, res){
   if(!user){
     res.redirect("/login");
   }
+
+  if(!user.inGroup){
+    Session.findById(req.params.id, function(err, session){
+      if(!err){
+        session.currentUsers.push(user);
+        session.save();
+        Session.populate(session, {path: "currentUsers"});
+        user.currentGroup = session._id; // save the session object id under currentGroup for the current user
+        User.populate(user, {path: "currentGroup"}); // 'populate' the sessions' object id (aka find the corresponding session and replace the object id with actual data)
+        user.inGroup = true;
+        user.save();
+        setTimeout(function(){
+          console.log("ASDF" + user);
+        }, 1000);
+      }
+    });
+  } else {
+    console.log("user is already in group " + user.currentGroup);
+  }
   
-  user.save(function(err){
-    if(!err){
-      Session.findById(req.params.id, function(err, session){
-        if(!err){
-          session.currentUsers.push(user);
-          session.save();
-          Session.populate(session, {path: "currentUsers"});
-          user.currentGroup = session._id; // save the session object id under currentGroup for the current user
-          User.populate(user, {path: "currentGroup"}); // 'populate' the sessions' object id (aka find the corresponding session and replace the object id with actual data)
-        }
-      })
-    }
-  });
   // TODO redirect to group SHOW page with all group info nicely displayed
     res.redirect("/groups");
 });
