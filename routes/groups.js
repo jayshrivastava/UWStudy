@@ -47,17 +47,13 @@ router.post("/:id/join", function(req, res){
 router.get("/leave", function(req, res){
   var user = req.user;
   
-  // TODO make user get removed from currentUsers array of the session
   Session.findById(user.currentGroup.toString(), function(err, session){
     if(!err){
-      console.log(session.currentUsers);
       for(var i = 0; i < session.currentUsers.length; i++){
-        if(session.currentUsers[i]._id.toString() == user._id.toString()){
-          console.log("true");
-          session.currentUsers.splice(i, 1);
+        if(session.currentUsers[i]._id.toString() == user._id.toString()){ // find index of user in array
+          session.currentUsers.splice(i, 1); // remove user from array
         }
       }
-      console.log(session.currentUsers);
       session.save();
     }
   });

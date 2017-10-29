@@ -1,6 +1,7 @@
 <% include ../partials/header %>
-
+	<link rel="stylesheet" href="stylesheets/navbar.css">
   </head>
+  <% include ../partials/navbar %>
   <body>
   	<% if(currentUser) { %>
   		<h1><%= currentUser.username %></h1>
@@ -11,79 +12,70 @@
 
 <div class="container">
   <div class="row">
-
-<% foundSessions.forEach(function(session){ %>
-	<div class="col-lg-4 col-md-6">
-		<% if(currentUser && currentUser.currentGroup && currentUser.currentGroup.equals(session._id)) { %>
-			<div class="panel panel-default panel-current panel--styled">
-		<% } else { %>
-			<div class="panel panel-default panel--styled">
-		<% } %>
-			<div class="panel-body">
-				<div class="col-lg-12 panelTop">	
-					<!--<div class="col-md-2">	-->
-					<!--	<img class="img-responsive" src="http://placehold.it/350x350" alt=""/>-->
-					<!--</div>-->
-					<div class="col-lg-12">	
-					<h2><%=session.course%></h2>
-						<p>Lorem , prima oratio ius ea. Et duo alii verterem principes, te quo putent melius fabulas, ei scripta eligendi appareat duo.</p>
-						<div class="col-lg-12" id="contact">
-						<p><b>Contact:</b> Facebook</p></p>
+  	
+<div class="jumbotron">
+	<h2>Groups</h2>
+</div>
+<% if(foundSessions.length > 0){ %>
+<div class="well well-lg">
+	<% foundSessions.forEach(function(session){ %>
+		<div class="col-lg-4 col-md-6">
+			<% if(currentUser && currentUser.currentGroup && currentUser.currentGroup.equals(session._id)) { %>
+				<div class="panel panel-default panel-current panel--styled">
+			<% } else { %>
+				<div class="panel panel-default panel--styled">
+			<% } %>
+				<div class="panel-body">
+					<div class="col-lg-12 panelTop">	
+						<div class="col-lg-12">	
+							<h2><%= session.course %></h2>
+							<p>Lorem , prima oratio ius ea. Et duo alii verterem principes, te quo putent melius fabulas, ei scripta eligendi appareat duo.</p>
+							<div class="col-lg-12" id="contact">
+							<p><b>Contact:</b> Facebook</p></p>
 						</div>	
 					</div>
-			
-				<div class="col-lg-12 panelBottom">
-					<!--<div class="col-lg-3 text-center bean">-->
-					<!--	<button class="btn btn-lg btn-add-to-cart"> Join</button>	-->
-					<!--</div>-->
+				
+					<div class="col-lg-12 panelBottom">
+						<div class="col-md-3 text-left">
+							<h5 id="expiresplaceroomfloor">Expires </h5> <span class="var">20m.</span>
+						</div>
+						<div class="col-md-3 text-left">
+							<h5 id="expiresplaceroomfloor">Place </h5> <span class="var"><%= session.building %></span>
+						</div>
+						<div class="col-md-3 text-left">
+							<h5 id="expiresplaceroomfloor">Room  </h5> <span class="var"><%= session.room %></span>
+						</div>
+						<div class="col-md-3 text-left">
+							<h5 id="expiresplaceroomfloor">Floor </h5> <span class="var"><%= session.floor %></span>
+						</div>
+					</div>
+					<div class="col-lg-12 panelBottom">
 					
-					<div class="col-lg-3 col-md-3 text-left">
-						<h5 id="expiresplaceroomfloor">Expires </h5> <span class="var">20m.</span>
-					</div>
-					<div class="col-lg-3 col-md-3 text-left">
-						<h5 id="expiresplaceroomfloor">Place </h5> <span class="var"><%= session.building %></span>
-					</div>
-					<div class="col-lg-3 col-md-3 text-left">
-						<h5 id="expiresplaceroomfloor">Room  </h5> <span class="var"><%= session.room %></span>
-					</div>
-					<div class="col-lg-3 col-md-3 text-left">
-						<h5 id="expiresplaceroomfloor">Floor </h5> <span class="var"><%= session.floor %></span>
+					   <div class="col-md-12" id="override1">
+			                  <div class="progress" id = "progressnomargin">
+			                    <div data-percentage="0%" style="width: <%=session.currentUsers.length/session.maxMembers * 100%>%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+			                    	<p> <%= session.currentUsers.length%> / <%= (session.maxMembers)%> Spots </p>
+			                    </div>
+			                  </div>
+			                </div>
+					   <div class="col-md-12" id="override">
+			                  <div class="progress" id= "progressnomargin">
+			                    <div data-percentage="0%" style="width: <%= (40/120)* 100 %>%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+			                    	<p> 40mins </p>
+			                    </div>
+			                  </div>
+			                </div>
+			                <form action="/groups/<%= session._id %>/join" method="POST">
+			                	<button class="btn btn-large btn-block">Join</button>
+			                </form>
 					</div>
 				</div>
-				<div class="col-lg-12 panelBottom">
-				
-				   <div class="col-lg-12 col-md-12" id="override1">
-		                  <div class="progress" id = "progressnomargin">
-		                    <div data-percentage="0%" style="width: <%=session.currentUsers.length/session.maxMembers * 100%>%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-		                    	<p> <%= session.currentUsers.length%> / <%= (session.maxMembers)%> Spots </p>
-		                    </div>
-		                  </div>
-		                </div>
-				
-				
-				   <div class="col-lg-12 col-md-12" id="override">
-		                  <div class="progress" id= "progressnomargin">
-		                    <div data-percentage="0%" style="width: <%= (40/120)* 100 %>%;" class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-		                    	<p> 40mins </p>
-		                    </div>
-		                  </div>
-		                </div>
-		                
-		                <form action="/groups/<%= session._id %>/join" method="POST">
-		                	<button class="btn btn-large btn-block">Join</button>
-		                </form>
-				</div>
-				
-				
-				
 			</div>
 		</div>
-	</div>
-		
-
-  </div>
-<% }) %>
-
+	  </div>
+	<% }) %>
+</div>
+<% } %>
 
 </div>
 
