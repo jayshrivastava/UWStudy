@@ -22,8 +22,6 @@ router.post("/:id/join", function(req, res){
   if(!user){
     res.redirect("/login");
   }
-  
-  console.log(user.currentGroup);
 
   if(!user.inGroup){ //if user is not currently in a group
     Session.findById(req.params.id, function(err, session){ //find the group they clicked on
@@ -48,10 +46,21 @@ router.post("/:id/join", function(req, res){
 // leave group route
 router.get("/leave", function(req, res){
   var user = req.user;
-
-  console.log(req.user.currentGroup.toString());
   
   // TODO make user get removed from currentUsers array of the session
+  Session.findById(user.currentGroup.toString(), function(err, session){
+    if(!err){
+      console.log(session.currentUsers);
+      for(var i = 0; i < session.currentUsers.length; i++){
+        if(session.currentUsers[i]._id.toString() == user._id.toString()){
+          console.log("true");
+          session.currentUsers.splice(i, 1);
+        }
+      }
+      console.log(session.currentUsers);
+      session.save();
+    }
+  });
   
   user.inGroup = false;       //
   user.currentGroup = null;   // this part works

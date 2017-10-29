@@ -11,7 +11,7 @@ var express       = require('express'),
      *  1. get auth working
      *  2. fix big anchor tag on login page
      *  3. Set leader & leader actions
-     *  4. fix crash when user tries to join expired group
+     *  4. fix crash when user tries to join/leave expired group
      *  5. make naming consistent (session/group)
      *
      */
