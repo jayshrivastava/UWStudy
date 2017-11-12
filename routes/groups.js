@@ -33,6 +33,9 @@ router.post("/:id/join", function(req, res){
         User.populate(user, {path: "currentGroup"}); // 'populate' the sessions' object id (aka find the corresponding session and replace the object id with actual data)
         user.inGroup = true; // set the user to be currently in a group
         user.save();
+        setTimeout(function(){
+          console.log(user);
+        }, 1000);
       }
     });
   } else {
@@ -71,7 +74,7 @@ router.post("/create", function (req, res){
         id: req.user._id,
         username: req.user.username
     };
-  var session = {course: req.body.course, author: author, building: req.body.building, maxMembers: req.body.size,  floor: req.body.floor, room: req.body.room,  expireAt: Date.now() + (req.body.duration*60*1000) }
+  var session = {course: req.body.course, author: author, building: req.body.building, maxMembers: req.body.size,  floor: req.body.floor, room: req.body.room, details: req.body.details, expireAt: Date.now() + (req.body.duration*60*1000) }
   Session.create(session, function(err, session){
     if(!err){
       res.redirect("/groups");
